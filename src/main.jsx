@@ -6,13 +6,40 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
+import Root from './Components/Root/Root';
+import Error from './Components/Error/Error';
+import Home from './Components/Home/Home';
+import Donation from './Components/Donation/Donation';
+import Statistics from './Components/Statistics/Statistics';
+import CardDetails from './Components/CardDetails/CardDetails';
 
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello world!</div>,
+    element: <Root></Root>,
+    errorElement: <Error></Error>,
+    children:[
+      {
+        path: "/",
+        element: <Home></Home>
+      },
+      {
+        path: '/donation',
+        element: <Donation></Donation>,
+        loader: () => fetch('../data.json')
+      },
+      {
+        path: '/statistics',
+        element: <Statistics></Statistics>
+      },
+      {
+        path: '/card/:id',
+        element: <CardDetails></CardDetails>,
+        loader: () => fetch('../data.json')
+      }
+    ]
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
