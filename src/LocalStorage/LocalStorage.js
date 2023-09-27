@@ -1,6 +1,8 @@
+
+
 const getStoredCards = () => {
     const storedCard = localStorage.getItem('donated-cards')
-    if(storedCard){
+    if (storedCard) {
         return JSON.parse(storedCard)
     }
     return [];
@@ -10,10 +12,10 @@ const getStoredCards = () => {
 const saveCard = id => {
     const storedCards = getStoredCards()
     const exists = storedCards.find(jobId => jobId === id)
-    if(!exists){
+    if (!exists) {
         storedCards.push(id)
         localStorage.setItem('donated-cards', JSON.stringify(storedCards))
     }
 }
 
-export {getStoredCards, saveCard}
+export { getStoredCards, saveCard }
