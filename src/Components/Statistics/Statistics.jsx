@@ -28,7 +28,7 @@ const Statistics = () => {
         const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
         const x = cx + radius * Math.cos(-midAngle * RADIAN);
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
-        
+
 
         return (
             <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} fontWeight={700} fontSize={30} dominantBaseline="central">
@@ -39,8 +39,19 @@ const Statistics = () => {
     return (
         <div>
             <h1 className='text-5xl font-bold text-center p-3'>Your donation chart</h1>
-            <div>
-                <PieChart  width={1200} height={500}>
+            <div className='md:flex justify-center gap-16 items-center'>
+                
+                <div className='flex justify-center gap-3 items-center'>
+                    <p>Total Donation</p>
+                    <div className='w-16 bg-[#FF444A] h-2 rounded-lg'></div>
+                </div>
+                <div className='flex justify-center gap-3 items-center'>
+                    <p>Your Donation</p>
+                    <div className='w-16 bg-[#00C49F] h-2 rounded-lg'></div>
+                </div>
+            </div>
+            <div style={{ width: '100%', maxWidth: '1200px' }} className='p-2 md:pl-48 lg:pl-80 xl:pl-[440px] mt-10'>
+                <PieChart  width={window.innerWidth > 400 ? 400 : window.innerWidth} height={400}>
                     <Pie
                         data={data}
                         cx="50%"
@@ -57,9 +68,8 @@ const Statistics = () => {
                     </Pie>
                 </PieChart>
             </div>
-            <div>
-                <h2></h2>
-            </div>
+            
+            
         </div>
     );
 };
